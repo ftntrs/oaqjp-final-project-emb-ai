@@ -1,3 +1,5 @@
+git clone git@github.com:ftntrs/oaqjp-final-project-emb-ai.git final_project
+
 ibmcloud ce project current
 
 ibmcloud ce project get --name 'Code Engine - sn-labs-cnshirui'
@@ -8,12 +10,12 @@ ibmcloud ce build create --name build-local-dockerfile1 \
                         --registry-secret icr-secret
                         /
 
+ibmcloud ce buildrun delete --name buildrun-local-dockerfile1
+
 ibmcloud ce buildrun submit --name buildrun-local-dockerfile1 \
                             --build build-local-dockerfile1 \
                             --source .
                             /
-
-ibmcloud ce buildrun get -n buildrun-local-dockerfile1
 
 ibmcloud ce buildrun get -n buildrun-local-dockerfile1
 

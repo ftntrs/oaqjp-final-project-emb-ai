@@ -1,5 +1,7 @@
 git clone git@github.com:ftntrs/oaqjp-final-project-emb-ai.git final_project
 
+git clone https://github.com/ibm-developer-skills-network/LLM_application_chatbot
+
 pip3 install -r requirements.txt
 python3 demo.py
 

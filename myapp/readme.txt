@@ -34,6 +34,23 @@ ibmcloud ce application create --name demo1 \
                             --registry-secret icr-secret --es 2G \
                             --port 7860 --minscale 1
 
+
+curl 'http://127.0.0.1:5000/www.example.com' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json' \
+  -H 'Origin: http://127.0.0.1:5000' \
+  -H 'Referer: http://127.0.0.1:5000/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  --data-raw '{"prompt":"hello"}'
+  
 ===
 
 theia@theiadocker-cnshirui:/home/project/final_project/myapp$ ibmcloud ce project current

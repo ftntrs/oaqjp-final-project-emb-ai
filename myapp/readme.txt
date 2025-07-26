@@ -1,16 +1,22 @@
 git clone git@github.com:ftntrs/oaqjp-final-project-emb-ai.git final_project
 
+pip3 install -r requirements.txt
+python3 demo.py
+
 ibmcloud ce project current
 
 ibmcloud ce project get --name 'Code Engine - sn-labs-cnshirui'
 
-ibmcloud ce build create --name build-local-dockerfile1 \
-                        --build-type local --size large \
-                        --image us.icr.io/${SN_ICR_NAMESPACE}/myapp1 \
-                        --registry-secret icr-secret
-                        /
+ibmcloud ce build delete --name build-local-dockerfile1
 
-ibmcloud ce buildrun delete --name buildrun-local-dockerfile1
+ibmcloud ce build create --name build-local-dockerfile1 \
+                        --build-type local --size xlarge \
+                        --image us.icr.io/${SN_ICR_NAMESPACE}/myapp1 \
+                        --registry-secret icr-secret 
+
+                        \
+                        --ephemeral-storage 8G \
+                        --memory 4G
 
 ibmcloud ce buildrun submit --name buildrun-local-dockerfile1 \
                             --build build-local-dockerfile1 \
@@ -21,6 +27,12 @@ ibmcloud ce buildrun get -n buildrun-local-dockerfile1
 
 ibmcloud ce buildrun logs -f -n buildrun-local-dockerfile1
 
+while true; do ibmcloud ce buildrun get -n buildrun-local-dockerfile1; sleep 5; date; done
+
+ibmcloud ce application create --name demo1 \
+                            --image us.icr.io/${SN_ICR_NAMESPACE}/myapp1  \
+                            --registry-secret icr-secret --es 2G \
+                            --port 7860 --minscale 1
 
 ===
 

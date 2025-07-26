@@ -12,5 +12,8 @@ def emotion_detector(text_to_analyze):
     header = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}  # 设置 API 请求所需的头信息
     response = requests.post(url, json = myobj, headers=header)  # 发送 POST 请求到 API，包含文本和头信息
     formatted_response = json.loads(response.text)
+    emotion_scores = formatted_response['emotionPredictions'][0]['emotion']
+    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
+    response = {**emotion_scores, 'dominant_emotion': dominant_emotion}
     # formatted_response = json.dumps(formatted_response, indent=4)
-    return formatted_response
+    return response
